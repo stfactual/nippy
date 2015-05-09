@@ -1,4 +1,4 @@
-(defproject com.taoensso/nippy "2.6.3"
+(defproject stfactual/nippy "2.6.3"
   :author "Peter Taoussanis <https://www.taoensso.com>"
   :description "Clojure serialization library"
   :url "https://github.com/ptaoussanis/nippy"
@@ -11,8 +11,7 @@
                 *assert* true}
   :dependencies
   [[org.clojure/clojure      "1.4.0"]
-   [org.clojure/tools.reader "0.8.3"]
-   [com.taoensso/encore      "1.3.1"]
+   [stfactual/encore         "1.3.1"]
    [org.iq80.snappy/snappy   "0.3"]
    [org.tukaani/xz           "1.5"]]
 
@@ -48,12 +47,8 @@
    "deploy-lib" ["do" "deploy" "clojars," "install"]
    "start-dev"  ["with-profile" "+dev*" "repl" ":headless"]}
 
-  :repositories
-  {"sonatype"
-   {:url "http://oss.sonatype.org/content/repositories/releases"
-    :snapshots false
-    :releases {:checksum :fail}}
-   "sonatype-snapshots"
-   {:url "http://oss.sonatype.org/content/repositories/snapshots"
-    :snapshots true
-    :releases {:checksum :fail :update :always}}})
+  :repositories {"factual" "http://maven.corp.factual.com/nexus/content/groups/public/"
+                 "releases" {:url "http://maven.corp.factual.com/nexus/content/repositories/releases"
+                             :sign-releases false}
+                 "snapshots" {:url      "http://maven.corp.factual.com/nexus/content/repositories/snapshots/"
+                              :snapshot {:update :always}}})

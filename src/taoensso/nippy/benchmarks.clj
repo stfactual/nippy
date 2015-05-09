@@ -1,7 +1,6 @@
 (ns taoensso.nippy.benchmarks
   {:author "Peter Taoussanis"}
-  (:require [clojure.tools.reader.edn :as edn]
-            [clojure.data.fressian    :as fressian]
+  (:require [clojure.data.fressian    :as fressian]
             [taoensso.encore          :as encore]
             [taoensso.nippy :as nippy :refer (freeze thaw)]
             [taoensso.nippy.compression :as compression]))
@@ -38,7 +37,7 @@
     (println (str "\nLap " (inc l) "/" laps "..."))
 
     (when reader? ; Slow
-      (println {:reader (bench1 #(pr-str %) #(edn/read-string %)
+      (println {:reader (bench1 #(pr-str %) #(read-string %)
                                 #(count (.getBytes ^String % "UTF-8")))}))
 
     (println {:default   (bench1 #(freeze % {})
@@ -58,7 +57,7 @@
   (println "\nDone! (Time for cake?)")
   true)
 
-(comment (edn/read-string (pr-str data))
+(comment (read-string (pr-str data))
          (bench1 fressian-freeze fressian-thaw))
 
 (comment

@@ -2,8 +2,7 @@
   "Simple, high-performance Clojure serialization library. Originally adapted
   from Deep-Freeze."
   {:author "Peter Taoussanis"}
-  (:require [clojure.tools.reader.edn :as edn]
-            [taoensso.encore :as encore]
+  (:require [taoensso.encore :as encore]
             [taoensso.nippy
              (utils       :as utils)
              (compression :as compression :refer (snappy-compressor))
@@ -376,7 +375,7 @@
 
         id-reader
         (let [edn (read-utf8 in)]
-          (try (edn/read-string {:readers *data-readers*} edn)
+          (try (read-string {:readers *data-readers*} edn)
                (catch Exception _ {:nippy/unthawable edn
                                    :type :reader})))
 
@@ -447,7 +446,7 @@
         id-uuid  (UUID. (.readLong in) (.readLong in))
 
         ;;; DEPRECATED
-        id-old-reader (edn/read-string (.readUTF in))
+        id-old-reader (read-string (.readUTF in))
         id-old-string (.readUTF in)
         id-old-map    (apply hash-map (encore/repeatedly-into* []
                         (* 2 (.readInt in)) (thaw-from-in in)))
