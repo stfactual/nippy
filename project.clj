@@ -1,4 +1,4 @@
-(defproject stfactual/nippy "2.6.3"
+(defproject stfactual/nippy "2.6.4"
   :author "Peter Taoussanis <https://www.taoensso.com>"
   :description "Clojure serialization library"
   :url "https://github.com/ptaoussanis/nippy"
@@ -11,7 +11,7 @@
                 *assert* true}
   :dependencies
   [[org.clojure/clojure      "1.4.0"]
-   [stfactual/encore         "1.3.1"]
+   [stfactual/encore         "1.3.3"]
    [org.iq80.snappy/snappy   "0.3"]
    [org.tukaani/xz           "1.5"]]
 
